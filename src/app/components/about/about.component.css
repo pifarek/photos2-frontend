@@ -1,0 +1,155 @@
+section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  background-image: url('/assets/images/about_background.jpg');
+  background-position: 50% 50%;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.overlay {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 7%;
+  background: linear-gradient(
+    to top,
+    #000,
+    rgba(0, 0, 0, 0.5)
+  );
+}
+.overlay .top-section {
+  text-align: center;
+}
+.overlay .avatar {
+  position: relative;
+  display: inline-block;
+  opacity: 0;
+  width: 100px;
+  height: 100px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background-image: url('/assets/images/avatar.jpg');
+  background-position: 50% 50%;
+  background-size: contain;
+  box-shadow: 0px 0px 8px #000;
+}
+.overlay ul.social,
+.overlay ul.social li{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.overlay ul.social {
+  position: relative;
+  opacity: 0;
+}
+.overlay ul.social li {
+  display: inline-block;
+  margin: 0 5px;
+}
+.overlay ul.social a {
+  display: block;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  background: #fff;
+  color: #000;
+  border-radius: 50%;
+  font-size: 14px;
+  line-height: 30px;
+  box-shadow: 0 0 8px #000;
+}
+.overlay ul.social a i {
+  line-height: inherit;
+}
+.overlay h2 {
+  position: relative;
+  opacity: 0;
+  color: #fff;
+  text-shadow: #000 1px 1px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+.overlay p {
+  position: relative;
+  opacity: 0;
+  display: inline-block;
+  width: 60%;
+  color: #d8d8d8;
+  text-shadow: #000 1px 1px;
+  font-weight: 700;
+  line-height: 30px;
+}
+.overlay .in-viewport .avatar {
+  animation-name: animateAvatar;
+  animation-duration: .5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+.overlay .in-viewport .social {
+  animation-name: animateSocial;
+  animation-duration: .5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-delay: .5s;
+}
+.overlay .in-viewport h2 {
+  animation-name: animateH2;
+  animation-duration: .5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-delay: 1s;
+}
+.overlay .in-viewport p {
+  animation-name: animateP;
+  animation-duration: .5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-delay: 1.5s;
+}
+
+
+@keyframes animateAvatar {
+  0%   {
+    left: -200px;
+    opacity: 0;
+  }
+  100% {
+    left: 0;
+    opacity: 1;
+  }
+}
+@keyframes animateSocial {
+  0%   {
+    left: -200px;
+    opacity: 0;
+  }
+  100% {
+    left: 0;
+    opacity: 1;
+  }
+}
+@keyframes animateH2 {
+  0%   {
+    left: -200px;
+    opacity: 0;
+  }
+  100% {
+    left: 0;
+    opacity: 1;
+  }
+}
+@keyframes animateP {
+  0%   {
+    left: -200px;
+    opacity: 0;
+  }
+  100% {
+    left: 0;
+    opacity: 1;
+  }
+}

@@ -1,0 +1,77 @@
+section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-image: url('/assets/images/contact_background.jpg');
+  background-size: cover;
+}
+.overlay {
+  position: relative;
+  display: flex;
+  margin: 15px 0;
+  background-color: #fff;
+  box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.5);
+}
+.overlay.sent .success{
+  animation-name: formSuccessShow;
+  animation-duration: .5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+@keyframes formSuccessShow {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.overlay.in-viewport {
+  animation-name: animateOverlay;
+  animation-duration: .5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+.overlay .left-content {
+  width: 150px;
+  padding-top: 20px;
+  background: #1a4668;
+  color: #bee3ff;
+  font-size: 50px;
+  text-align: center;
+}
+.overlay .right-content {
+  flex: 1;
+  padding: 20px;
+  background: #fff;
+}
+.overlay .success {
+  padding: 20px 0;
+}
+.overlay .success > div:first-child {
+  padding: 20px 0;
+  font-size: 50px;
+  color: green;
+}
+@media only screen and (max-width: 768px) {
+  .overlay .left-content {
+    display: none;
+  }
+  .right-content h3 {
+    font-size: 1rem;
+  }
+}
+
+@keyframes animateOverlay {
+  0%   {
+    left: -200px;
+    opacity: 0;
+  }
+  100% {
+    left: 0;
+    opacity: 1;
+  }
+}

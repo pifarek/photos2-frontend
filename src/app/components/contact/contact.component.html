@@ -1,0 +1,44 @@
+<section class="page" id="section-contact" #sectionContact>
+  <div class="container">
+    <div class="overlay" appIsVisible [ngClass]="{'sent' : sent}">
+      <div class="left-content">
+        <i class="fas fa-envelope-open-text"></i>
+      </div>
+      <div class="right-content">
+        <h3 class="text-center mb-5">
+          SEND ME A MESSAGE
+          <small class="d-block mt-2 text-muted">
+            If you want to contact with me, please fill the form below.
+          </small>
+        </h3>
+
+        <form [formGroup]="form" novalidate (submit)="message($event)" *ngIf="!sent">
+          <div class="form-group">
+            <label for="contact-name">Your Name</label>
+            <input type="name" class="form-control" id="contact-name" placeholder="Enter your name" formControlName="name" [ngClass]="{'is-invalid': this.form.get('name').invalid && this.form.get('name').touched}">
+          </div>
+          <div class="form-group">
+            <label for="contact-email">Your Email Address</label>
+            <input type="email" class="form-control" id="contact-email" placeholder="Your Email Address" formControlName="email" [ngClass]="{'is-invalid': this.form.get('email').invalid && this.form.get('email').touched}">
+          </div>
+          <div class="form-group">
+            <label for="contact-message">Your Message</label>
+            <textarea class="form-control" id="contact-message" placeholder="Your Message" formControlName="message" [ngClass]="{'is-invalid': this.form.get('message').invalid && this.form.get('message').touched}"></textarea>
+          </div>
+          <button type="submit" class="btn btn-success" [disabled]="form.invalid"><i class="fas fa-paper-plane"></i> Send Message</button>
+        </form>
+
+        <div class="success" *ngIf="sent">
+          <div class="text-center">
+            <i class="fas fa-check-circle"></i>
+          </div>
+
+          <div class="alert alert-success text-center">
+            Your message to me has been sent successfully! :-)
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

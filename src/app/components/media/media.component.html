@@ -1,0 +1,62 @@
+<section id="page-media" #section>
+  <ng-template [ngIf]="loadingMedia">
+    <div class="loader">
+      <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+  </ng-template>
+
+  <ng-template [ngIf]="!loadingMedia">
+    <div id="media-full" (swipeleft)="previousMedia()" (swiperight)="nextMedia()" [ngClass]="mediaSize === 'cover'? 'media-cover' : 'media-contain'" [ngStyle]="{'backgroundImage': 'url(' + config.uploadURL + 'images/f/' + media.filename + ')'}">
+      <div class="overlay" #tooltipRootElement [appMouseMove]="{timeout: 3, classIn: 'visible', classOut: 'hidden'}">
+
+        <a href="#" *ngIf="!fullscreen" routerLink="/" class="media-close media-btn" [appTooltip]="'Go back to homepage'" [tooltipRoot]="tooltipRootElement"><i class="fas fa-backspace"></i></a>
+
+        <div class="media-hover">
+          <h2 *ngIf="media.name || media.category.name" title="{{ media.name || media.category.name }}">
+            <i class="fab fa-slack-hash"></i> {{ media.name || media.category.name }}
+            <small>{{ media.takenAt | date:'longDate'}}</small>
+          </h2>
+
+          <p *ngIf="media.description || media.category.description">
+            {{ media.description || media.category.description }}
+          </p>
+        </div>
+
+        <a *ngIf="prevId" href="#" [routerLink]="'/media/' + prevId" class="media-navigation-previous media-btn" [appTooltip]="'Go to Previous Media'" [tooltipRoot]="tooltipRootElement"><i class="fas fa-angle-double-left"></i></a>
+        <a *ngIf="nextId" href="#" [routerLink]="'/media/' + nextId" class="media-navigation-next media-btn" [appTooltip]="'Go to Next Media'" [tooltipRoot]="tooltipRootElement"><i class="fas fa-angle-double-right"></i></a>
+
+        <div class="media-buttons">
+          <a href="#" class="media-btn" (click)="toggleSize($event)" [appTooltip]="'Toggle Media Proportions'" [tooltipRoot]="tooltipRootElement">
+            <i *ngIf="mediaSize==='cover'" class="fas fa-compress-alt"></i>
+            <i *ngIf="mediaSize==='contain'" class="fas fa-expand-alt"></i>
+          </a>
+          <a href="#" *ngIf="fullscreenApiEnabled && !fullscreen" class="media-btn" (click)="startFullscreen($event)" [appTooltip]="'Fullscreen'" [tooltipRoot]="tooltipRootElement">
+            <i class="fas fa-expand"></i>
+          </a>
+          <a href="#" *ngIf="fullscreenApiEnabled && fullscreen" class="media-btn" (click)="quitFullscreen($event)" [appTooltip]="'Quit Fullscreen'" [tooltipRoot]="tooltipRootElement">
+            <i class="fas fa-compress"></i>
+          </a>
+          <a href="#" class="media-btn" (click)="download($event)" [appTooltip]="'Save Media'" [tooltipRoot]="tooltipRootElement">
+            <i class="far fa-save"></i>
+          </a>
+        </div>
+
+        <div class="media-details d-flex">
+          <div class="flex-fill d-flex flex-row align-items-center pl-3">
+            <ul class="media-categories">
+              <li><i class="far fa-file"></i></li>
+              <li *ngFor="let category of media.extractCategories(media.category).reverse()" title="{{ category }}">
+                <p>{{ category }}</p>
+              </li>
+            </ul>
+          </div>
+          <div class="d-flex flex-row-reverse align-items-center pr-3">
+            <ul class="media-tags ml-auto">
+              <li *ngFor="let tag of media.tags">{{ tag.name }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</section>

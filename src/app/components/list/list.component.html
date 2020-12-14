@@ -1,0 +1,83 @@
+<section class="page" id="section-list" #sectionMedia>
+
+  <div class="container" style="margin-bottom: 30px;">
+    <div class="">
+      <div class="row filter-bar" #filterBar>
+        <div class="col p-0">
+          <ng-select class="select-filter-bar" [items]="categories" bindLabel="value" [multiple]="false" [clearable]="false" [searchable]="false" (change)="onCategoryChange($event)" [(ngModel)]="filters.selectedCategory" placeholder="Select Category...">
+            <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+              {{item.value}}
+            </ng-template>
+          </ng-select>
+        </div>
+        <div class="col p-0">
+          <ng-select class="select-filter-bar" [items]="order" [clearable]="false" [searchable]="false" labelForId="id" bindLabel="name" (change)="onOrderChange($event)" [(ngModel)]="filters.selectedOrder">
+          </ng-select>
+        </div>
+        <div class="col p-0">
+          <ng-select class="select-filter-bar" [items]="tags" [clearable]="false" [searchable]="false" [multiple]="true" labelForId="id" bindLabel="value" placeholder="Select Tags ..." (change)="onTagChange($event)" [(ngModel)]="filters.selectedTags">
+            <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+              <input id="item-{{index}}" type="checkbox" [ngModel]="item$.selected"/> {{item.value}}
+            </ng-template>
+          </ng-select>
+        </div>
+        <div class="p-0">
+          <button class="btn btn-success" (click)="resetFilters()" [disabled]="!filters.selectedCategory?.id || filters.selectedOrder?.order == order[0].order"><i class="fas fa-redo"></i> Reset Filters</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="category-not-found my-5" *ngIf="!loadingMedia && !media.length">
+      <h3>
+        <i class="fas fa-heart-broken" style="color: red;"></i><br>
+        Nothing<br>
+        Found<br>
+        In Selected<br>
+        Category
+      </h3>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <ng-template [ngIf]="!loadingMedia">
+      <div class="row media-list">
+        <ng-container *ngFor="let mediaItem of media; let i = index">
+
+            <div class="{{ colClass(i) }}">
+              <a href="#" [routerLink]="'media/' + mediaItem.id" class="thumb image" [ngStyle]="{'backgroundImage': 'url(' + config.uploadURL + 'images/m/' + mediaItem.filename + ')'}">
+
+                <span class="overlay">
+                  <span class="media-type"></span>
+                </span>
+              </a>
+            </div>
+
+        </ng-container>
+      </div>
+    </ng-template>
+
+    <div class="loading-media" *ngIf="loadingMedia">
+      <div class="row">
+        <ng-container *ngFor="let loop of [].constructor(12); let i = index">
+          <div class="{{ colClass(i) }}">
+            <div class="temporary"><div></div></div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <div class="container text-center mb-5 more-button-container" *ngIf="filters.page < pages" #moreButton>
+    <button href="#" class="btn btn-success" [disabled]="loadingMedia" (click)="loadMoreMedia()">
+      <ng-template [ngIf]="loadingMedia">
+      <i class="fa fa-spin fa-spinner"></i> Loading Media ...
+      </ng-template>
+      <ng-template [ngIf]="!loadingMedia">
+        <i class="fas fa-file-download"></i> Page {{filters.page}} of {{pages}} loaded. Load More ...
+      </ng-template>
+    </button>
+  </div>
+
+</section>

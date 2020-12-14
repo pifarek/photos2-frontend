@@ -1,0 +1,242 @@
+section {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #000;
+}
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.lds-roller {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-roller div {
+  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  transform-origin: 40px 40px;
+}
+.lds-roller div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fff;
+  margin: -4px 0 0 -4px;
+}
+.lds-roller div:nth-child(1) {
+  animation-delay: -0.036s;
+}
+.lds-roller div:nth-child(1):after {
+  top: 63px;
+  left: 63px;
+}
+.lds-roller div:nth-child(2) {
+  animation-delay: -0.072s;
+}
+.lds-roller div:nth-child(2):after {
+  top: 68px;
+  left: 56px;
+}
+.lds-roller div:nth-child(3) {
+  animation-delay: -0.108s;
+}
+.lds-roller div:nth-child(3):after {
+  top: 71px;
+  left: 48px;
+}
+.lds-roller div:nth-child(4) {
+  animation-delay: -0.144s;
+}
+.lds-roller div:nth-child(4):after {
+  top: 72px;
+  left: 40px;
+}
+.lds-roller div:nth-child(5) {
+  animation-delay: -0.18s;
+}
+.lds-roller div:nth-child(5):after {
+  top: 71px;
+  left: 32px;
+}
+.lds-roller div:nth-child(6) {
+  animation-delay: -0.216s;
+}
+.lds-roller div:nth-child(6):after {
+  top: 68px;
+  left: 24px;
+}
+.lds-roller div:nth-child(7) {
+  animation-delay: -0.252s;
+}
+.lds-roller div:nth-child(7):after {
+  top: 63px;
+  left: 17px;
+}
+.lds-roller div:nth-child(8) {
+  animation-delay: -0.288s;
+}
+.lds-roller div:nth-child(8):after {
+  top: 56px;
+  left: 12px;
+}
+@keyframes lds-roller {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+#media-full {
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: unset;
+  background-position: 50% 50%;
+  animation-name: mediaFull;
+  animation-duration: 1s;
+}
+@keyframes mediaFull {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+#media-full.media-cover {
+  background-size: cover;
+}
+#media-full.media-contain {
+  background-size: contain;
+}
+#media-full .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: .3s ease;
+}
+#media-full .overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+#media-full .overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+.media-btn {
+  display: block;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 40px;
+  color: #fff;
+  text-shadow: #000 1px 1px;
+  background: rgba(0, 0, 0, 0.8);
+}
+.media-btn i {
+  line-height: inherit;
+}
+.media-btn:hover {
+  background: rgba(0, 0, 0, 1);
+}
+#media-full .media-close {
+  position: absolute;
+  top: 2%;
+  left: 2%;
+}
+.media-hover {
+  position: absolute;
+  top: 2%;
+  left: 50%;
+  padding: 10px 20px;
+  max-width: 40%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+}
+.media-hover h2 {
+  width: 100%;
+  margin: 0;
+  color: #fff;
+  font-size: 22px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.media-hover h2 small {
+  font-size: 10px;
+  color: #dcdcdc;
+}
+.media-hover h2 i {
+  color: #b8b8b8;
+}
+.media-hover p {
+  width: 100%;
+  margin: 10px 0 0 0;
+  padding-top: 10px;
+  border-top: 1px solid #2d2d2d;
+  color: #b8b8b8;
+  font-size: 14px;
+}
+.media-navigation-previous {
+  position: absolute;
+  left: 2%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.media-navigation-next {
+  position: absolute;
+  right: 2%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.media-buttons {
+  display: flex;
+  position: absolute;
+  top: 2%;
+  right: 2%;
+
+}
+.media-details {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 50px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+@media only screen and (max-width: 768px) {
+  .media-hover {
+    top: 8%;
+    max-width: 90%;
+  }
+  .media-hover h2 {
+    font-size: 18px;
+  }
+  .media-hover p {
+    font-size: 12px;
+  }
+  .media-details .media-tags {
+    display: none;
+  }
+  .media-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+    line-height: 35px;
+  }
+}

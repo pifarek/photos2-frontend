@@ -1,0 +1,24 @@
+<section id="intro" #sectionHome>
+  <video playsinline autoplay muted loop #introVideo>
+    <source src="/assets/videos/intro.mp4" type="video/mp4">
+    <source src="/assets/videos/intro.webm" type="video/webm">
+
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="intro-background">
+    <div class="intro-container">
+      <h1 class="page-title">
+        Travel & Photography
+      </h1>
+
+      <h3 class="page-description">
+        Feel free to check my small collection of pictures and videos.
+      </h3>
+    </div>
+    <a href="#" class="arrows" (click)="scrollToMedia($event)">
+      <span></span>
+      <span></span>
+    </a>
+  </div>
+</section>
